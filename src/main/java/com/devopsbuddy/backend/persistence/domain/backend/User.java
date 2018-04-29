@@ -43,6 +43,8 @@ public class User implements Serializable {
 
     private String country;
 
+    private boolean enabled;
+
     @Column(name = "profile_image_url")
     private String profileImageUrl;
 
@@ -158,5 +160,13 @@ public class User implements Serializable {
 
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

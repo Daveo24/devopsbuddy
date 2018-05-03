@@ -10,8 +10,21 @@ public class UserRole implements Serializable {
     /** The Serial version UID */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Default
+     */
     public UserRole() {
 
+    }
+
+    /**
+     * UserRole constructor
+     * @param user
+     * @param role
+     */
+    public UserRole(User user, Role role) {
+        this.user = user;
+        this.role = role;
     }
 
     @Id

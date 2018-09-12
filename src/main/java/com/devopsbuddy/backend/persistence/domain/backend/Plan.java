@@ -52,14 +52,13 @@ public class Plan implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Plan plan = (Plan) o;
-
         return id == plan.id;
     }
 
     @Override
     public int hashCode() {
-        return id;
+    	
+    	return Objects.hash(id);
     }
 }

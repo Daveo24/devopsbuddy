@@ -9,6 +9,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.devopsbuddy.backend.service.UserSecurityService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +20,9 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private UserSecurityService userSecurityService;
+	
     @Autowired
     private Environment env;
 
@@ -56,8 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
-                .withUser("user").password("{noop}password")
-                .roles("USER");
+                .userDetailsService(userSecurityService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }

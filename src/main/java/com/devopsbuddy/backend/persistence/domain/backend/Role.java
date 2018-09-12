@@ -19,8 +19,8 @@ public class Role implements Serializable {
 
     private String name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<UserRole> userRoles = new HashSet<>();
+    @OneToMany(mappedBy = "role",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles= new HashSet<>();
 
     public Role() {
 
@@ -63,14 +63,12 @@ public class Role implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Role role = (Role) o;
-
         return id == role.id;
     }
 
     @Override
     public int hashCode() {
-        return id;
+    	return Objects.hash(id);
     }
 }

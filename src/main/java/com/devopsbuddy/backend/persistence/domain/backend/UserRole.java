@@ -2,6 +2,7 @@ package com.devopsbuddy.backend.persistence.domain.backend;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_role")
@@ -26,17 +27,29 @@ public class UserRole implements Serializable {
         this.user = user;
         this.role = role;
     }
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }    
+    
     public User getUser() {
         return user;
     }
@@ -57,17 +70,13 @@ public class UserRole implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         UserRole userRole = (UserRole) o;
-
-        if (user != null ? !user.equals(userRole.user) : userRole.user != null) return false;
-        return role != null ? role.equals(userRole.role) : userRole.role == null;
+        return id == userRole.id;
     }
 
     @Override
     public int hashCode() {
-        int result = user != null ? user.hashCode() : 0;
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id);
     }
 }

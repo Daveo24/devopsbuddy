@@ -21,7 +21,7 @@ public class UserUtils {
 
         User user = new User();
         user.setUsername("basicUser");
-        user.setPassword("$2a$10$MUC.KW6DRVxP8IVqAKvp4evyXts07i3sGde0LhXv0v2kbDLUdMtEy");
+        user.setPassword("secret");
         user.setEmail("sa@mail.com");
         user.setFirstName("firstName");
         user.setLastName("lastName");

@@ -4,8 +4,6 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.pradeep.backend.persistence.domain.backend.Authority;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;

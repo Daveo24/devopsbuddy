@@ -13,12 +13,12 @@ import com.devopsbuddy.enums.RolesEnum;
 import com.devopsbuddy.utils.UserUtils;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashSet;
@@ -37,6 +37,8 @@ public class IntegrationRepositoriesTest {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Rule public TestName testName = new TestName();
 
     @Before
     public void init() {
@@ -72,13 +74,20 @@ public class IntegrationRepositoriesTest {
     
     @Test
     public void testDeleteUser() throws Exception {
-    	User basicUser=createUser();
+    	String username = testName.getMethodName();
+    	String email = testName.getMethodName() + "@me.com";
+    	
+    	User basicUser=createUser(username, email);
     	userRepository.deleteById(basicUser.getId());
     }
     
     @Test
     public void testCreateNewUser() throws Exception{
-       User basicUser=createUser();
+    	
+    	String username = testName.getMethodName();
+    	String email = testName.getMethodName() + "@me.com";
+    	
+    	User basicUser=createUser(username, email);
 
         Optional<User> newlyCreatedUser=userRepository.findById(basicUser.getId());
         Assert.assertNotNull(newlyCreatedUser);
@@ -93,11 +102,11 @@ public class IntegrationRepositoriesTest {
 
     }
 
-    private User createUser(){
+    private User createUser(String username, String email){
         Plan basicPlan=createPlan(PlansEnum.BASIC);
         planRepository.save(basicPlan);
 
-        User basicUser=UserUtils.createBasicUser();
+        User basicUser=UserUtils.createBasicUser(username, email);
         basicUser.setPlan(basicPlan);
 
         Role basicRole=createRole(RolesEnum.BASIC);

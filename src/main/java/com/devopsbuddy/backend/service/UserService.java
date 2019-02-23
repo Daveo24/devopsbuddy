@@ -67,4 +67,22 @@ public class UserService {
         userRepository.updateUserPassword(userId, password);
         LOG.debug("Password updated successfully for user id {} ", userId);
     }
+
+    /**
+     * Find by User by username
+     * @param username the username to be found
+     * @return a User by the username or null if nothing
+     */
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    /**
+     * Returns a User by email or null if nothing can be found
+     * @param email the email associated to the user to find
+     * @return a User by email or null if nothing can be found
+     */
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }

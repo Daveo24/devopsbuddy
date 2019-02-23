@@ -3,6 +3,7 @@ package com.devopsbuddy;
 import com.devopsbuddy.backend.persistence.domain.backend.Role;
 import com.devopsbuddy.backend.persistence.domain.backend.User;
 import com.devopsbuddy.backend.persistence.domain.backend.UserRole;
+import com.devopsbuddy.backend.service.PlanService;
 import com.devopsbuddy.backend.service.UserService;
 import com.devopsbuddy.enums.PlansEnum;
 import com.devopsbuddy.enums.RolesEnum;
@@ -23,17 +24,22 @@ import javax.validation.Valid;
 @SpringBootApplication
 public class DevopsbuddyApplication implements CommandLineRunner {
 
-	/** The apllication logger */
+	/** The application logger */
 	private static final Logger LOG = LoggerFactory.getLogger(DevopsbuddyApplication.class);
 
 	@Autowired
 	private UserService userService;
-	
-	@Value(value = "${webmaster.username}")
+
+	@Autowired
+	private PlanService planService;
+
+	@Value("${webmaster.username}")
 	private String webmasterUsername;
-	@Value(value = "${webmaster.password}")
+
+	@Value("${webmaster.password}")
 	private String webmasterPassword;
-	@Value(value = "${webmaster.email}")
+
+	@Value("${webmaster.email}")
 	private String webmasterEmail;
 
 	public static void main(String[] args) {
@@ -42,6 +48,11 @@ public class DevopsbuddyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		LOG.info("Creating Basic and Pro plans in the database...");
+		planService.createPlan(PlansEnum.BASIC.getId());
+		planService.createPlan(PlansEnum.PRO.getId());
+
 		User user = UserUtils.createBasicUser(webmasterUsername, webmasterEmail);
 		user.setPassword(webmasterPassword);
 		Set<UserRole> userRoles = new HashSet<>();

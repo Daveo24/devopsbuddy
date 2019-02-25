@@ -5,6 +5,7 @@ import com.devopsbuddy.backend.persistence.domain.backend.Role;
 import com.devopsbuddy.backend.persistence.domain.backend.User;
 import com.devopsbuddy.backend.persistence.domain.backend.UserRole;
 import com.devopsbuddy.backend.service.PlanService;
+import com.devopsbuddy.backend.service.S3Service;
 import com.devopsbuddy.backend.service.UserService;
 import com.devopsbuddy.enums.PlansEnum;
 import com.devopsbuddy.enums.RolesEnum;
@@ -40,6 +41,9 @@ public class SignupController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private S3Service s3Service;
 
     /** The application logger */
     private static final Logger LOG = LoggerFactory.getLogger(SignupController.class);
@@ -112,7 +116,7 @@ public class SignupController {
         LOG.debug("Transforming user payload into User domain object");
         User user = UserUtils.fromWebUserToDomainUser(payload);
 
-        uploadImage(file, user);
+        uploadImage(file, user, payload);
 
         // Sets the Plan and the Roles (depending on the chosen plan)
         LOG.debug("Retrieving plan from the database");
@@ -151,10 +155,12 @@ public class SignupController {
         return SUBSCRIPTION_VIEW_NAME;
     }
 
-    private void uploadImage(MultipartFile file, User user) {
+    private void uploadImage(MultipartFile file, User user, @Valid ProAccountPayload payload) throws IOException {
 
         if(file != null && !file.isEmpty()){
-            String profileImageUrl = null;
+
+            String profileImageUrl = s3Service.storeProfileImage(file, payload.getUsername());
+            LOG.info("Image has been uploaded", profileImageUrl);
             if(profileImageUrl != null) {
                 user.setProfileImageUrl(profileImageUrl);
             } else {

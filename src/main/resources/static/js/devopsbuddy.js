@@ -138,6 +138,10 @@ function main() {
             email: {
                 required: true,
                 email: true
+            },
+            cardNumber: {
+                required: true,
+                creditcard: true
             }
         },
         messages: {

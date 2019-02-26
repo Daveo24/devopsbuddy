@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -138,6 +139,17 @@ public class SignupController {
             registeredUser = userService.createUser(user, PlansEnum.BASIC, roles);
         } else {
             roles.add(new UserRole(user, new Role(RolesEnum.PRO)));
+
+            if(StringUtils.isEmpty(payload.getCardCode()) ||
+                    StringUtils.isEmpty(payload.getCardNumber()) ||
+                    StringUtils.isEmpty(payload.getCardMonth()) ||
+                    StringUtils.isEmpty(payload.getCardYear())) {
+                LOG.error("One or more credit card fields is null or empty. Returning error to user");
+                model.addAttribute(SIGNED_UP_MESSAGE_KEY, false);
+                model.addAttribute(ERROR_MESSAGE_KEY, "One or more credit card details is null or empty");
+                return SUBSCRIPTION_VIEW_NAME;
+            }
+
             registeredUser = userService.createUser(user, PlansEnum.PRO, roles);
             LOG.debug(payload.toString());
         }

@@ -92,6 +92,14 @@
 			<version>LATEST</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>7.24.0</version>
+		</dependency>
+
+
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>

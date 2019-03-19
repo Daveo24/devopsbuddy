@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.amazonaws:aws-java-sdk-sagemaker:1.11.519">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-sagemaker/1.11.519/aws-java-sdk-sagemaker-1.11.519.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-sagemaker/1.11.519/aws-java-sdk-sagemaker-1.11.519-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-sagemaker/1.11.519/aws-java-sdk-sagemaker-1.11.519-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

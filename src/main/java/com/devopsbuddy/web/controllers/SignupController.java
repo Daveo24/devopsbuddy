@@ -10,6 +10,8 @@ import com.devopsbuddy.backend.service.StripeService;
 import com.devopsbuddy.backend.service.UserService;
 import com.devopsbuddy.enums.PlansEnum;
 import com.devopsbuddy.enums.RolesEnum;
+import com.devopsbuddy.exceptions.S3Exception;
+import com.devopsbuddy.exceptions.StripeException;
 import com.devopsbuddy.utils.StripeUtils;
 import com.devopsbuddy.utils.UserUtils;
 import com.devopsbuddy.web.domain.frontend.BasicAccountPayload;
@@ -23,18 +25,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
 public class SignupController {
+
 
     @Autowired
     private PlanService planService;
@@ -64,6 +69,8 @@ public class SignupController {
     public static final String SIGNED_UP_MESSAGE_KEY = "signedUp";
 
     public static final String ERROR_MESSAGE_KEY = "message";
+
+    public static final String GENERIC_ERROR_VIEW_NAME = "error/genericError";
 
     @RequestMapping(value = SIGNUP_URL_MAPPING, method = RequestMethod.GET)
     public String signupGet(@RequestParam("planId") int planId, ModelMap model) {
@@ -195,6 +202,19 @@ public class SignupController {
                         " be created without the image");
             }
         }
+    }
+
+    @ExceptionHandler({StripeException.class, S3Exception.class})
+    public ModelAndView signupException(HttpServletRequest request, Exception exception) {
+
+        LOG.error("Request {} rasied exception {}", request.getRequestURL(), exception);
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("exception", exception);
+        mav.addObject("url", request.getRequestURL());
+        mav.addObject("timestamp", LocalDate.now(Clock.systemUTC()));
+        mav.setViewName(GENERIC_ERROR_VIEW_NAME);
+        return mav;
     }
 
 

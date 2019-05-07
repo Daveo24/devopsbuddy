@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devopsbuddy.backend.persistence.repositories;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Set;
 
 /**
- * 
+ *
  */
 @Repository
 public interface PasswordResetTokenRepository extends CrudRepository<PasswordResetToken, Long> {
@@ -21,4 +21,5 @@ public interface PasswordResetTokenRepository extends CrudRepository<PasswordRes
 
     @Query("select ptr from PasswordResetToken ptr inner join ptr.user u where ptr.user.id = ?1")
     Set<PasswordResetToken> findAllByUserId(long userId);
+
 }

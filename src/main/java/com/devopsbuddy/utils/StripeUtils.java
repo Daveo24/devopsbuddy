@@ -19,6 +19,7 @@ public class StripeUtils {
 
     /**
      * Given the card info provided by the user in the front-end, it returns a params map to obtain the Stripe token
+     *
      * @param payload the info provided bt the user during registration
      * @return a param map that can be used to obtain a Stripe token
      */

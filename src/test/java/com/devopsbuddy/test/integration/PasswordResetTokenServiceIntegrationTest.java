@@ -20,7 +20,8 @@ public class PasswordResetTokenServiceIntegrationTest extends AbstractServiceInt
     @Autowired
     private PasswordResetTokenService passwordResetTokenService;
 
-    @Rule public TestName testName = new TestName();
+    @Rule
+    public TestName testName = new TestName();
 
     @Test
     public void testCreateNewTokenForUserEmail() throws Exception {

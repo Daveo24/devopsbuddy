@@ -32,7 +32,9 @@ public class ForgotMyPasswordController {
 
     public static final String CHANGE_PASSWORD_PATH = "/changeuserpassword";
 
-    /** The application logger */
+    /**
+     * The application logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(ForgotMyPasswordController.class);
 
     public static final String EMAIL_ADDRESS_VIEW_NAME = "forgotmypassword/emailForm";
@@ -65,8 +67,7 @@ public class ForgotMyPasswordController {
     private PasswordResetTokenService passwordResetTokenService;
 
     @RequestMapping(value = FORGOT_PASSWORD_URL_MAPPING, method = RequestMethod.GET)
-    public String forgotPasswordGet()
-    {
+    public String forgotPasswordGet() {
         return EMAIL_ADDRESS_VIEW_NAME;
     }
 
@@ -77,7 +78,7 @@ public class ForgotMyPasswordController {
 
         PasswordResetToken passwordResetToken = passwordResetTokenService.createPasswordResetTokenForEmail(email);
 
-        if(null == passwordResetToken) {
+        if (null == passwordResetToken) {
             LOG.warn("Couldn't find a password reset token for email {}", email);
         } else {
 

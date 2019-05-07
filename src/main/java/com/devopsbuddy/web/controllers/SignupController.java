@@ -53,7 +53,9 @@ public class SignupController {
     @Autowired
     private StripeService stripeService;
 
-    /** The application logger */
+    /**
+     * The application logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(SignupController.class);
 
     public static final String SIGNUP_URL_MAPPING = "/signup";
@@ -149,7 +151,7 @@ public class SignupController {
         } else {
             roles.add(new UserRole(user, new Role(RolesEnum.PRO)));
 
-            if(StringUtils.isEmpty(payload.getCardCode()) ||
+            if (StringUtils.isEmpty(payload.getCardCode()) ||
                     StringUtils.isEmpty(payload.getCardNumber()) ||
                     StringUtils.isEmpty(payload.getCardMonth()) ||
                     StringUtils.isEmpty(payload.getCardYear())) {
@@ -191,11 +193,11 @@ public class SignupController {
 
     private void uploadImage(MultipartFile file, User user, @Valid ProAccountPayload payload) throws IOException {
 
-        if(file != null && !file.isEmpty()){
+        if (file != null && !file.isEmpty()) {
 
             String profileImageUrl = s3Service.storeProfileImage(file, payload.getUsername());
             LOG.info("Image has been uploaded", profileImageUrl);
-            if(profileImageUrl != null) {
+            if (profileImageUrl != null) {
                 user.setProfileImageUrl(profileImageUrl);
             } else {
                 LOG.warn("There was a problem uploading the profile image to S3. The user's profile will" +

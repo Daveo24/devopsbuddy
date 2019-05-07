@@ -1,5 +1,6 @@
 package com.devopsbuddy.backend.persistence.domain.backend;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,16 +15,21 @@ import java.util.Set;
 @Entity
 public class User implements Serializable, UserDetails {
 
-    /** The Serial version UID */
+    /**
+     * The Serial version UID
+     */
     private static final long serialVersionUID = 1L;
 
-    /** Default constructor */
+    /**
+     * Default constructor
+     */
     public User() {
 
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
     @Column(unique = true)
@@ -65,11 +71,11 @@ public class User implements Serializable, UserDetails {
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            fetch=FetchType.LAZY,
-            mappedBy="user"
+            fetch = FetchType.LAZY,
+            mappedBy = "user"
     )
     private Set<PasswordResetToken> passwordResetTokens = new HashSet<>();
-    
+
     public long getId() {
         return id;
     }
@@ -181,7 +187,7 @@ public class User implements Serializable, UserDetails {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -198,37 +204,37 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities= new HashSet<>();
+        Set<GrantedAuthority> authorities = new HashSet<>();
         userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
         return authorities;
     }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	/**
-	 * @return the passwordResetTokens
-	 */
-	public Set<PasswordResetToken> getPasswordResetTokens() {
-		return passwordResetTokens;
-	}
+    /**
+     * @return the passwordResetTokens
+     */
+    public Set<PasswordResetToken> getPasswordResetTokens() {
+        return passwordResetTokens;
+    }
 
-	/**
-	 * @param passwordResetTokens the passwordResetTokens to set
-	 */
-	public void setPasswordResetTokens(Set<PasswordResetToken> passwordResetTokens) {
-		this.passwordResetTokens = passwordResetTokens;
-	}
+    /**
+     * @param passwordResetTokens the passwordResetTokens to set
+     */
+    public void setPasswordResetTokens(Set<PasswordResetToken> passwordResetTokens) {
+        this.passwordResetTokens = passwordResetTokens;
+    }
 }

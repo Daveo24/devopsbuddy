@@ -11,7 +11,9 @@ import java.util.Set;
 @Entity
 public class Role implements Serializable {
 
-    /** The Serial version UID */
+    /**
+     * The Serial version UID
+     */
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -19,8 +21,8 @@ public class Role implements Serializable {
 
     private String name;
 
-    @OneToMany(mappedBy = "role",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<UserRole> userRoles= new HashSet<>();
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles = new HashSet<>();
 
     public Role() {
 
@@ -28,6 +30,7 @@ public class Role implements Serializable {
 
     /**
      * Full constructor
+     *
      * @param rolesEnum
      */
     public Role(RolesEnum rolesEnum) {
@@ -69,6 +72,6 @@ public class Role implements Serializable {
 
     @Override
     public int hashCode() {
-    	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

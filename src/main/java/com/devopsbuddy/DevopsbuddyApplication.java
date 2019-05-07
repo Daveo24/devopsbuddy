@@ -24,41 +24,43 @@ import javax.validation.Valid;
 @SpringBootApplication
 public class DevopsbuddyApplication implements CommandLineRunner {
 
-	/** The application logger */
-	private static final Logger LOG = LoggerFactory.getLogger(DevopsbuddyApplication.class);
+    /**
+     * The application logger
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(DevopsbuddyApplication.class);
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private PlanService planService;
+    @Autowired
+    private PlanService planService;
 
-	@Value("${webmaster.username}")
-	private String webmasterUsername;
+    @Value("${webmaster.username}")
+    private String webmasterUsername;
 
-	@Value("${webmaster.password}")
-	private String webmasterPassword;
+    @Value("${webmaster.password}")
+    private String webmasterPassword;
 
-	@Value("${webmaster.email}")
-	private String webmasterEmail;
+    @Value("${webmaster.email}")
+    private String webmasterEmail;
 
-	public static void main(String[] args) {
-		SpringApplication.run(DevopsbuddyApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DevopsbuddyApplication.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 
-		LOG.info("Creating Basic and Pro plans in the database...");
-		planService.createPlan(PlansEnum.BASIC.getId());
-		planService.createPlan(PlansEnum.PRO.getId());
+        LOG.info("Creating Basic and Pro plans in the database...");
+        planService.createPlan(PlansEnum.BASIC.getId());
+        planService.createPlan(PlansEnum.PRO.getId());
 
-		User user = UserUtils.createBasicUser(webmasterUsername, webmasterEmail);
-		user.setPassword(webmasterPassword);
-		Set<UserRole> userRoles = new HashSet<>();
-		userRoles.add(new UserRole(user, new Role(RolesEnum.ADMIN)));
-		LOG.debug("Creating user with username {}", user.getUsername());
-		userService.createUser(user, PlansEnum.PRO, userRoles);
-		LOG.info("User {} created", user.getUsername());
-	}
+        User user = UserUtils.createBasicUser(webmasterUsername, webmasterEmail);
+        user.setPassword(webmasterPassword);
+        Set<UserRole> userRoles = new HashSet<>();
+        userRoles.add(new UserRole(user, new Role(RolesEnum.ADMIN)));
+        LOG.debug("Creating user with username {}", user.getUsername());
+        userService.createUser(user, PlansEnum.PRO, userRoles);
+        LOG.info("User {} created", user.getUsername());
+    }
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devopsbuddy.backend.persistence.domain.backend;
 
@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,8 @@ public class PasswordResetToken implements Serializable {
     private final static int DEFAULT_TOKEN_LENGTH_IN_MINUTES = 120;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
     @Column(unique = true)

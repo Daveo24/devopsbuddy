@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devopsbuddy.backend.service;
 
@@ -21,19 +21,19 @@ import com.devopsbuddy.backend.persistence.repositories.UserRepository;
 @Service
 public class UserSecurityService implements UserDetailsService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(UserSecurityService.class);
-	
-	@Autowired
-	private UserRepository userRepository; 
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
-		if(user == null) {
-			LOG.warn("Username {} not found", username);
-			throw new UsernameNotFoundException("Username " + username + "not found");
-		}
-		return user;
-	}
+    private static final Logger LOG = LoggerFactory.getLogger(UserSecurityService.class);
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            LOG.warn("Username {} not found", username);
+            throw new UsernameNotFoundException("Username " + username + "not found");
+        }
+        return user;
+    }
 
 }

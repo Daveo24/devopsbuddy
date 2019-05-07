@@ -10,7 +10,9 @@ import java.util.Objects;
 @Entity
 public class Plan implements Serializable {
 
-    /** The Serial version UID */
+    /**
+     * The Serial version UID
+     */
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -18,13 +20,16 @@ public class Plan implements Serializable {
 
     private String name;
 
-    /** Default constructor */
+    /**
+     * Default constructor
+     */
     public Plan() {
 
     }
 
     /**
      * Used constructor
+     *
      * @param plansEnum
      */
     public Plan(PlansEnum plansEnum) {
@@ -58,7 +63,7 @@ public class Plan implements Serializable {
 
     @Override
     public int hashCode() {
-    	
-    	return Objects.hash(id);
+
+        return Objects.hash(id);
     }
 }

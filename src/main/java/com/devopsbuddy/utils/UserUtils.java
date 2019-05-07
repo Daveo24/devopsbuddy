@@ -17,8 +17,9 @@ public class UserUtils {
 
     /**
      * Creates a user with basic attributes set.
+     *
      * @param username The username.
-     * @param email The email.
+     * @param email    The email.
      * @return A User entity
      */
     public static User createBasicUser(String username, String email) {

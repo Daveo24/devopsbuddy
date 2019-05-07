@@ -20,7 +20,7 @@ public class DevelopmentConfig {
 
     @Bean
     public EmailService emailService() {
-       return new MockEmailService();
+        return new MockEmailService();
     }
 
     @Bean

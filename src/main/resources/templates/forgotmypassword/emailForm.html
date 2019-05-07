@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/header :: common-header" />
+<head th:replace="common/header :: common-header"/>
 
 
 <body>
 
 <!-- Imports the common navbar -->
-<div th:replace="common/navbar :: common-navbar" />
-
+<div th:replace="common/navbar :: common-navbar"/>
 
 
 <!-- Error and Logout section -->
@@ -34,11 +33,12 @@
                     <!-- Email -->
                     <div class="form-group">
                         <label for="email" th:text="#{form.email}"></label>
-                        <input type="email" class="form-control" id="email" name="email"  />
+                        <input type="email" class="form-control" id="email" name="email"/>
                     </div>
                     <!-- Submit -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" th:text="#{forgotmypassword.submit.text}"></button>
+                        <button type="submit" class="btn btn-primary"
+                                th:text="#{forgotmypassword.submit.text}"></button>
                     </div>
                 </form>
             </div>
@@ -47,7 +47,7 @@
 
 </div>
 
-<div th:replace="common/header :: before-body-scripts" />
+<div th:replace="common/header :: before-body-scripts"/>
 
 </body>
 </html>

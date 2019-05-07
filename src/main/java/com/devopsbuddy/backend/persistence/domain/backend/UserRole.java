@@ -1,5 +1,7 @@
 package com.devopsbuddy.backend.persistence.domain.backend;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,7 +10,9 @@ import java.util.Objects;
 @Table(name = "user_role")
 public class UserRole implements Serializable {
 
-    /** The Serial version UID */
+    /**
+     * The Serial version UID
+     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -20,6 +24,7 @@ public class UserRole implements Serializable {
 
     /**
      * UserRole constructor
+     *
      * @param user
      * @param role
      */
@@ -27,17 +32,18 @@ public class UserRole implements Serializable {
         this.user = user;
         this.role = role;
     }
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private long id;
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Id
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
@@ -48,8 +54,8 @@ public class UserRole implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }    
-    
+    }
+
     public User getUser() {
         return user;
     }

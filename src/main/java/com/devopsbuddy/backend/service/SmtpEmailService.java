@@ -8,7 +8,9 @@ import org.springframework.mail.SimpleMailMessage;
 
 public class SmtpEmailService extends AbstractEmailService {
 
-    /** The apllication logger */
+    /**
+     * The apllication logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(SmtpEmailService.class);
 
     @Autowired

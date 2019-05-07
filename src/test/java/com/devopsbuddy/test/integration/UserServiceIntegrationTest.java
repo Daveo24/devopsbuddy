@@ -23,11 +23,11 @@ import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = DevopsbuddyApplication.class)
-public class UserServiceIntegrationTest extends  AbstractServiceIntegrationTest {
+public class UserServiceIntegrationTest extends AbstractServiceIntegrationTest {
 
     @Rule
     public TestName testName = new TestName();
-    
+
     @Test
     public void testCreateNewUser() throws Exception {
 

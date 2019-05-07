@@ -24,7 +24,8 @@ import java.util.UUID;
 @SpringBootTest(classes = DevopsbuddyApplication.class)
 public class UserRepositoryIntegrationTest extends AbstractIntegrationTest {
 
-    @Rule public TestName testName = new TestName();
+    @Rule
+    public TestName testName = new TestName();
 
     @Before
     public void init() {
@@ -42,40 +43,39 @@ public class UserRepositoryIntegrationTest extends AbstractIntegrationTest {
     }
 
 
-
     @Test
-    public void testCreateNewRole()throws Exception{
-        Role userRole=createRole(RolesEnum.BASIC);
+    public void testCreateNewRole() throws Exception {
+        Role userRole = createRole(RolesEnum.BASIC);
         roleRepository.save(userRole);
-        Optional<Role> reterivedRole=roleRepository.findById(RolesEnum.BASIC.getId());
+        Optional<Role> reterivedRole = roleRepository.findById(RolesEnum.BASIC.getId());
         Assert.assertNotNull(reterivedRole);
 
     }
 
     @Test
     public void testDeleteUser() throws Exception {
-    	String username = testName.getMethodName();
-    	String email = testName.getMethodName() + "@me.com";
+        String username = testName.getMethodName();
+        String email = testName.getMethodName() + "@me.com";
 
-    	User basicUser=createUser(username, email);
-    	userRepository.deleteById(basicUser.getId());
+        User basicUser = createUser(username, email);
+        userRepository.deleteById(basicUser.getId());
     }
 
     @Test
     public void testCreateNewUser() throws Exception {
 
-    	String username = testName.getMethodName();
-    	String email = testName.getMethodName() + "@me.com";
+        String username = testName.getMethodName();
+        String email = testName.getMethodName() + "@me.com";
 
-    	User basicUser=createUser(username, email);
+        User basicUser = createUser(username, email);
 
-        Optional<User> newlyCreatedUser=userRepository.findById(basicUser.getId());
+        Optional<User> newlyCreatedUser = userRepository.findById(basicUser.getId());
         Assert.assertNotNull(newlyCreatedUser);
-        Assert.assertTrue(newlyCreatedUser.get().getId() !=0);
+        Assert.assertTrue(newlyCreatedUser.get().getId() != 0);
         Assert.assertNotNull(newlyCreatedUser.get().getPlan());
         Assert.assertNotNull(newlyCreatedUser.get().getPlan().getId());
-        Set<UserRole> newlyCreateduserRoles=newlyCreatedUser.get().getUserRoles();
-        for (UserRole ur:newlyCreateduserRoles){
+        Set<UserRole> newlyCreateduserRoles = newlyCreatedUser.get().getUserRoles();
+        for (UserRole ur : newlyCreateduserRoles) {
             Assert.assertNotNull(ur.getRole());
             Assert.assertNotNull(ur.getRole().getId());
         }

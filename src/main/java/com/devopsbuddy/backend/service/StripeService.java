@@ -15,7 +15,9 @@ import java.util.Map;
 public class StripeService {
 
 
-    /** The application logger */
+    /**
+     * The application logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(StripeService.class);
 
     @Autowired
@@ -23,7 +25,8 @@ public class StripeService {
 
     /**
      * Creates a Stripe customer and returns the Stripe customer id
-     * @param tokenParams The credit card details to obtain a token. These will never be stored in the DB
+     *
+     * @param tokenParams    The credit card details to obtain a token. These will never be stored in the DB
      * @param customerParams The parameters which identify the customer
      * @return The stripe customer id which can then be used to perform billing operations at a later stage
      * @throws com.devopsbuddy.exceptions.StripeException If an error occurred while interacting with Stripe

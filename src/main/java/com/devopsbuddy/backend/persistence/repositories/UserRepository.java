@@ -12,21 +12,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface UserRepository extends CrudRepository<User, Long> {
 
-	/**
-	 * Returns a User given a username or null if not found
-	 * @param username
-	 * @return a User given a username or null if not found
-	 */
-	public User findByUsername(String username);
+    /**
+     * Returns a User given a username or null if not found
+     *
+     * @param username
+     * @return a User given a username or null if not found
+     */
+    User findByUsername(String username);
 
-	/**
-	 * Returns a User for the given email address or null if none is found
-	 * @param email the user's email
-	 * @return a User for the given email address or null if none is found
-	 */
-	public User findByEmail(String email);
+    /**
+     * Returns a User for the given email address or null if none is found
+     *
+     * @param email the user's email
+     * @return a User for the given email address or null if none is found
+     */
+    User findByEmail(String email);
 
-	@Modifying
-	@Query("update User u set u.password = :password where u.id = :userId")
-	void updateUserPassword(@Param("userId") long userId, @Param("password") String password);
+    @Transactional
+    @Modifying
+    @Query("update User u set u.password = :password where u.id = :userId")
+    void updateUserPassword(@Param("userId") long userId, @Param("password") String password);
 }

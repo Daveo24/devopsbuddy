@@ -29,7 +29,9 @@ import static org.hamcrest.core.IsNull.notNullValue;
 @SpringBootTest(classes = DevopsbuddyApplication.class)
 public class StripeIntegrationTest {
 
-    /** The application logger */
+    /**
+     * The application logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(StripeIntegrationTest.class);
 
     public static final String TEST_CC_NUMBER = "4242424242424242";

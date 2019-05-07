@@ -28,11 +28,12 @@ public class PasswordResetTokenService {
     @Value("${token.expiration.length.minutes}")
     private int tokenExpirationInMinutes;
 
-    /** The application logger */
+    /**
+     * The application logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(PasswordResetTokenService.class);
 
     /**
-     *
      * @param token
      * @return
      */
@@ -42,6 +43,7 @@ public class PasswordResetTokenService {
 
     /**
      * Creates a new Password Reset Token for the user identified by the email
+     *
      * @param email the unique email address of the user
      * @return a new Password Reset Token for the user identified by the email, null if none found
      */

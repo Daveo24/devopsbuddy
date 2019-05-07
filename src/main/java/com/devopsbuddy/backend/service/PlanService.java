@@ -16,6 +16,7 @@ public class PlanService {
 
     /**
      * Returns the plan id for the given id or null if it couldn't find one.
+     *
      * @param planId The plan id
      * @return The plan id for the given id or null if it couldn't find one.
      */
@@ -25,6 +26,7 @@ public class PlanService {
 
     /**
      * It creates a Basic or a Pro plan.
+     *
      * @param planId The plan id
      * @return the created Plan
      * @throws IllegalArgumentException If the plan id is not 1 or 2

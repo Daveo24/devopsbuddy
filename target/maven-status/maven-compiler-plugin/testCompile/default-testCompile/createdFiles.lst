@@ -1,1 +1,10 @@
+com/devopsbuddy/test/integration/UserRepositoryIntegrationTest.class
+com/devopsbuddy/test/integration/StripeIntegrationTest.class
+com/devopsbuddy/test/integration/UserServiceIntegrationTest.class
 com/devopsbuddy/DevopsbuddyApplicationTests.class
+com/devopsbuddy/test/integration/AbstractServiceIntegrationTest.class
+com/devopsbuddy/test/unit/UserUtilsUnitTest.class
+com/devopsbuddy/test/unit/StripeUtilsUnitTest.class
+com/devopsbuddy/test/integration/AbstractIntegrationTest.class
+com/devopsbuddy/test/integration/PasswordResetTokenIntegrationTest.class
+com/devopsbuddy/test/integration/PasswordResetTokenServiceIntegrationTest.class

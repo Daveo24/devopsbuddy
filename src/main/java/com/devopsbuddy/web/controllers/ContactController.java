@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ContactController {
-    
-    /** The apllication logger */
+
+    /**
+     * The apllication logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(ContactController.class);
 
     public static final String FEEDBACK_MODEL_KEY = "feedback";

@@ -22,20 +22,25 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserSecurityService userSecurityService;
-	
+    @Autowired
+    private UserSecurityService userSecurityService;
+
     @Autowired
     private Environment env;
-    
-    /** */
+
+    /**
+     *
+     */
     private static final String SALT = "fdalkjalk;3jlwf00sfaof";
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-    	return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
+        return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
     }
 
-    /** Public URLs... */
+    /**
+     * Public URLs...
+     */
     private static final String[] PUBLIC_MATCHERS = {
             "/webjars/**",
             "/css/**",
@@ -55,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         List<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-        if(activeProfiles.contains("dev")) {
+        if (activeProfiles.contains("dev")) {
             http.csrf().disable();
             http.headers().frameOptions().disable();
         }

@@ -24,7 +24,9 @@ import java.io.IOException;
 @Service
 public class S3Service {
 
-    /** The application logger */
+    /**
+     * The application logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(S3Service.class);
 
     private static final String PROFILE_PICTURE_FILE_NAME = "profilePicture";
@@ -44,8 +46,9 @@ public class S3Service {
 
     /**
      * It stores the given file name in S3 and returns the key under which the file has been stored
+     *
      * @param uploadedFile The multipart file uploaed by the user
-     * @param username The username for which to upload this file
+     * @param username     The username for which to upload this file
      * @return The URL of the uploaded image
      * @throws S3Exception if something goes wrong
      */
@@ -73,9 +76,9 @@ public class S3Service {
 
                 LOG.info("Temporary file will be saved to {}", tmpProfileImageFile.getAbsolutePath());
 
-                try(BufferedOutputStream stream =
-                            new BufferedOutputStream(
-                                    new FileOutputStream(new File(tmpProfileImageFile.getAbsolutePath())))) {
+                try (BufferedOutputStream stream =
+                             new BufferedOutputStream(
+                                     new FileOutputStream(new File(tmpProfileImageFile.getAbsolutePath())))) {
                     stream.write(bytes);
                 }
 
@@ -97,6 +100,7 @@ public class S3Service {
     /**
      * Returns the root URL where the bucket name is located.
      * <p>Please note that the URL does not contain the bucket name</p>
+     *
      * @param bucketName The bucket name
      * @return the root URL where the bucket name is located.
      */
@@ -123,9 +127,9 @@ public class S3Service {
 
     /**
      * It stores the given file name in S3 and returns the key under which the file has been stored
+     *
      * @param resource The file resource to upload to S3
      * @return The URL of the uploaded resource or null if a problem occurred
-     *
      * @throws IllegalArgumentException If the resource file does not exist
      */
     private String storeProfileImageToS3(File resource, String username) {

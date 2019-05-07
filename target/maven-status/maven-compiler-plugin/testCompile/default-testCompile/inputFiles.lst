@@ -1,1 +1,10 @@
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/unit/UserUtilsUnitTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/PasswordResetTokenIntegrationTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/UserRepositoryIntegrationTest.java
 /Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/DevopsbuddyApplicationTests.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/AbstractServiceIntegrationTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/unit/StripeUtilsUnitTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/UserServiceIntegrationTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/PasswordResetTokenServiceIntegrationTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/StripeIntegrationTest.java
+/Users/dave/DBR-Dev/fullystacktutorial/devopsbuddy/src/test/java/com/devopsbuddy/test/integration/AbstractIntegrationTest.java

@@ -12,7 +12,9 @@ import java.util.Locale;
 @Service
 public class I18NService {
 
-    /** The apllication logger */
+    /**
+     * The apllication logger
+     */
     private static final Logger LOG = LoggerFactory.getLogger(I18NService.class);
 
     @Autowired
